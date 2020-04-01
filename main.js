@@ -1,5 +1,5 @@
 // Modules to control application life and create native browser window
-const {app, BrowserWindow} = require('electron')
+const {app, Menu, Tray, BrowserWindow} = require('electron')
 const path = require('path')
 
 function createWindow () {
@@ -19,10 +19,25 @@ function createWindow () {
   // mainWindow.webContents.openDevTools()
 }
 
+const assetsDirectory = path.join(__dirname, 'assets')
+const createTray = () => {
+  tray = new Tray(path.join(assetsDirectory, 'sunTemplate.png'))
+  tray.on('click', function (event) {
+    console.warn("hello")
+  })
+  tray.setTitle("Hello")
+  setInterval(() => {
+    tray.setTitle(Math.random().toString())
+  })
+}
+
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
-app.whenReady().then(createWindow)
+app.whenReady().then(() => {
+  createTray()
+  createWindow()
+})
 
 // Quit when all windows are closed.
 app.on('window-all-closed', function () {
