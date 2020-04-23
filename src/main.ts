@@ -8,26 +8,27 @@ function createWindow () {
     width: 800,
     height: 600,
     webPreferences: {
-      preload: path.join(__dirname, 'preload.js')
+      preload: path.join(__dirname, '../preload.js')
     }
   })
 
   // and load the index.html of the app.
-  mainWindow.loadFile('index.html')
+  mainWindow.loadFile('../index.html')
 
   // Open the DevTools.
   // mainWindow.webContents.openDevTools()
 }
 
-const assetsDirectory = path.join(__dirname, 'assets')
+let tray
+const assetsDirectory = path.join(__dirname, '../assets')
 const createTray = () => {
   tray = new Tray(path.join(assetsDirectory, 'sunTemplate.png'))
-  tray.on('click', function (event) {
+  tray.on('click', () => {
     console.warn("hello")
   })
-  tray.setTitle("Hello")
+  tray.setTitle("MSFT")
   setInterval(() => {
-    tray.setTitle(Math.random().toString())
+    // tray.setTitle(Math.random().toString())
   })
 }
 
@@ -35,8 +36,8 @@ const createTray = () => {
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 app.whenReady().then(() => {
-  createTray()
   createWindow()
+  createTray()
 })
 
 // Quit when all windows are closed.
