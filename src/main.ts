@@ -3,9 +3,9 @@ import {app, Menu, Tray, BrowserWindow} from "electron"
 import path from 'path'
 
 let tray
-const assetsDirectory = path.join(__dirname, '../assets')
+const logo = path.join(__dirname, '../assets/logo.png')
 const createTray = () => {
-  tray = new Tray(path.join(assetsDirectory, 'sunTemplate.png'))
+  tray = new Tray(logo)
   tray.on('click', () => {
     console.warn("hello")
   })
