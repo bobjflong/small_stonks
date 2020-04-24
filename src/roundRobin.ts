@@ -14,11 +14,8 @@ class RoundRobin {
   }
 
   increment() {
-    let newPointer = this.pointer + 1
-    if (newPointer >= this.items.length) {
-      newPointer = 0
-    }
-    this.pointer = newPointer
+    const incremented = this.pointer + 1
+    this.pointer = incremented >= this.items.length ? 0 : incremented
   }
 }
 
