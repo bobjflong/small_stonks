@@ -1,13 +1,15 @@
-const stocksArgName = "--stocks="
-const durationArgName = "--duration="
+const parseTokens = {
+  stocks: "--stocks=",
+  duration: "--duration=",
+}
 const delimeter = ","
 const defaultDuration = 5000
 
 type Args = { stocks: string[], duration: number }
 
-const find = (args: string[], identifier: string): string | undefined => {
-  const found = args.find(arg => arg.startsWith(identifier))
-  return found?.split(identifier)[1]
+const find = (args: string[], identifier: "stocks" | "duration"): string | undefined => {
+  const found = args.find(arg => arg.startsWith(parseTokens[identifier]))
+  return found?.split(parseTokens[identifier])[1]
 }
 
 const parseDuration = (value: string | undefined) => {
@@ -15,9 +17,11 @@ const parseDuration = (value: string | undefined) => {
   return duration && duration > 0 ? duration : defaultDuration
 }
 
+const parseStocks = (value: string | undefined) => value?.split(delimeter) || []
+
 const parse = (args: string[]): Args => {
-  const stocks = find(args, stocksArgName)?.split(delimeter) || []
-  const duration = parseDuration(find(args, durationArgName))
+  const stocks = parseStocks(find(args, "stocks"))
+  const duration = parseDuration(find(args, "duration"))
   return {
     stocks,
     duration,
