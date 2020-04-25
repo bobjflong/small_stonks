@@ -28,4 +28,4 @@ const parse = (args: string[]): Args => {
   }
 }
 
-export { parse }
+export { parse, Args }
