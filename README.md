@@ -8,7 +8,7 @@ A menu-bar application for macOS, which ticks through a list of stock symbols, g
 
 # Usage
 
-Requires a free API key from [Alpha Vantage](https://www.alphavantage.co/support/#api-key)
+Requires a free API key from [Alpha Vantage](https://www.alphavantage.co/support/#api-key).
 
 ```
 yarn start --stocks=MSFT,TWLO,SPY,AAPL --apiKey=<api key>
@@ -20,4 +20,4 @@ Clicking the menu bar item, will open the current stock in Yahoo Finance, eg: ht
 
 # Warning
 
-Please don't use this app for anything important, or making important decisions 🙄I cannot vouch for accuracy or errors.
+Please don't use this app for anything important, or making important decisions 🙄 I cannot vouch for accuracy.
