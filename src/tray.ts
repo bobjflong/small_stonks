@@ -1,4 +1,4 @@
-import {nativeImage, shell} from "electron"
+import {nativeImage, shell, Tray} from "electron"
 import {Args} from "./arguments"
 import {RoundRobin} from "./roundRobin"
 import {Tray as ElectronTray} from "electron"
@@ -34,6 +34,11 @@ const images = {
   "down": path.join(__dirname, '../assets/down.png')
 }
 
+const updateTray = (tray: Tray, item: string, price: Price) => {
+  tray.setTitle(formatPriceDisplay(item, price))
+  tray.setImage(images[price?.up ? "up" : "down"])
+}
+
 const getInstance = (args: Args) => {
   const stockAPI = new StockAPI(new Stocks(args.apiKey))
   const roundRobin = new RoundRobin(args.stocks, stockAPI)
@@ -45,15 +50,10 @@ const getInstance = (args: Args) => {
 
   leadingInterval(() => {
     roundRobin.next().then(p => {
-      if (!p.result && stocks[p.item]) {
-        tray.setTitle(formatPriceDisplay(p.item, stocks[p.item]))
-        tray.setImage(images[stocks[p.item]?.up ? "up" : "down"]) // TODO: clean up duplication here
-      } else {
-        stockToVisit = p.item
-        if (p.result) stocks[stockToVisit] = p.result
-        tray.setTitle(formatPriceDisplay(stockToVisit, p.result))
-        tray.setImage(images[p.result?.up ? "up" : "down"])
-      }
+      stockToVisit = p.item
+      if (p.result) stocks[stockToVisit] = p.result
+
+      updateTray(tray, p.item, p.result || stocks[p.item] || null)
     }).catch(() => {})
   }, args.duration)
 
