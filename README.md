@@ -1,6 +1,6 @@
 # small_stonks
 
-A very small menu-bar application for macOS, which ticks through a list of stock symbols, giving their current price. This app is implemented with Typescript and Electron.
+A menu-bar application for macOS, which ticks through a list of stock symbols, giving their current price. This app is implemented with Typescript and Electron.
 
 # Gif
 
@@ -15,6 +15,8 @@ yarn start --stocks=MSFT,TWLO,SPY,AAPL --apiKey=<api key>
 ```
 
 The `--duration` parameter is also supported, to change how long each price is displayed for. However free Alpha Vantage accounts have low rate limits, so YMMV in terms of accuracy. The app will try to fall back to a previous price if none is returned by the API.
+
+Clicking the menu bar item, will open the current stock in Yahoo Finance, eg: https://finance.yahoo.com/quote/TWLO/.
 
 # Warning
 
