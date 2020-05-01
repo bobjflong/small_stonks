@@ -9,7 +9,3 @@ if (app) {
   app.whenReady().then(() => createTray(parse(process.argv)))
   app.on('window-all-closed', app.quit)
 }
-
-const foo = () => "bar"
-
-export { foo }

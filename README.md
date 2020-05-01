@@ -20,4 +20,4 @@ Clicking the menu bar item, will open the current stock in Yahoo Finance, eg: ht
 
 # Warning
 
-Please don't use this app for anything important, or making important decisions 🙄 I cannot vouch for accuracy. The data here is calculated from daily snapshots, not real-time. This is due to some limitations of Alpha Vantage. I would like to add real time data in the future.
+Please don't use this app for anything important, or making important decisions 🙄 I cannot vouch for accuracy. Alpha Vantage does not support real-time information for Nasdaq listed items, and there may be other inaccuracies.

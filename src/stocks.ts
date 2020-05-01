@@ -13,7 +13,7 @@ class StockAPIWrapper {
     try {
       const result = await this.stocks.timeSeries({
         symbol: stockName,
-        interval: 'daily',
+        interval: '60min',
         amount: 2
       })
       if (!result[0] || !result[1]) return null
