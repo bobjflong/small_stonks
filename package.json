@@ -4,7 +4,7 @@
   "description": "A minimal Electron application",
   "main": "main.js",
   "scripts": {
-    "start": "yarn run tsc && electron dist/main.js --stocks=MSFT,TWLO,SPY,AAPL",
+    "start": "yarn run tsc && electron dist/main.js",
     "test": "yarn ts-mocha tests/*.ts"
   },
   "repository": "https://github.com/electron/electron-quick-start",
