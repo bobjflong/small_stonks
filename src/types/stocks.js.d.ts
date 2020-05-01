@@ -1,5 +1,9 @@
 
-type StockQuery = { symbol: string, interval: string, amount: number}
+type StockQuery = {
+  symbol: string;
+  interval: string;
+  amount: number;
+}
 type StockResult = Array<{close: number}>
 
 declare class Stocks {

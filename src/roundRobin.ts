@@ -1,5 +1,8 @@
 import { Price, StockAPI } from "./stocks"
-type Fetched = {item: string, result: Price }
+type Fetched = {
+  item: string;
+  result: Price;
+}
 
 class RoundRobin {
   items: string[]
@@ -22,11 +25,11 @@ class RoundRobin {
     })
   }
 
-  current() {
+  current(): string {
     return this.items[this.pointer]
   }
 
-  increment() {
+  increment(): void {
     const incremented = this.pointer + 1
     this.pointer = incremented >= this.items.length ? 0 : incremented
   }

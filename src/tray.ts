@@ -1,16 +1,16 @@
-import {nativeImage, shell, Tray} from "electron"
-import {Args} from "./arguments"
-import {RoundRobin} from "./roundRobin"
-import {Tray as ElectronTray} from "electron"
+import { nativeImage, shell, Tray } from "electron"
+import { Args } from "./arguments"
+import { RoundRobin } from "./roundRobin"
+import { Tray as ElectronTray } from "electron"
 import { Price, StockAPI } from "./stocks"
 import Stocks from "stocks.js"
 import path from "path"
 
 let tray: ElectronTray
-let stockToVisit: string = ""
+let stockToVisit = ""
 const stocks: { [key: string]: Price } = {}
 
-const formatPriceDisplay = (stock: string, price: Price) => {
+const formatPriceDisplay = (stock: string, price: Price): string => {
   let priceDisplay
   switch(price) {
     case null: {
@@ -18,13 +18,13 @@ const formatPriceDisplay = (stock: string, price: Price) => {
       break
     }
     case price: {
-      priceDisplay = `\$${price?.value}`
+      priceDisplay = `$${price?.value}`
     }
   }
   return stock ? `${stock.padEnd(5, '  ')} ${priceDisplay}` : ""
 }
 
-const leadingInterval = (fn: Function, timeout: number) => {
+const leadingInterval = (fn: Function, timeout: number): number => {
   fn()
   return setInterval(fn, timeout)
 }
@@ -34,12 +34,12 @@ const images = {
   "down": path.join(__dirname, '../assets/down.png')
 }
 
-const updateTray = (tray: Tray, item: string, price: Price) => {
+const updateTray = (tray: Tray, item: string, price: Price): void => {
   tray.setTitle(formatPriceDisplay(item, price))
   tray.setImage(images[price?.up ? "up" : "down"])
 }
 
-const getInstance = (args: Args) => {
+const getInstance = (args: Args): Tray => {
   const stockAPI = new StockAPI(new Stocks(args.apiKey))
   const roundRobin = new RoundRobin(args.stocks, stockAPI)
   tray = new ElectronTray(nativeImage.createEmpty())
@@ -54,7 +54,7 @@ const getInstance = (args: Args) => {
       if (p.result) stocks[stockToVisit] = p.result
 
       updateTray(tray, p.item, p.result || stocks[p.item] || null)
-    }).catch(() => {})
+    }).catch(() => { /* do nothing */ })
   }, args.duration)
 
   return tray

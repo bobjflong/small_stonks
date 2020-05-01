@@ -1,4 +1,7 @@
-type Price = { value: number, up: boolean } | null
+type Price = {
+  value: number;
+  up: boolean;
+} | null
 
 type API = { timeSeries: (query: StockQuery) => Promise<StockResult> }
 

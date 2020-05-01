@@ -5,7 +5,8 @@
   "main": "main.js",
   "scripts": {
     "start": "yarn run tsc && electron dist/main.js",
-    "test": "yarn ts-mocha tests/*.ts"
+    "test": "yarn ts-mocha tests/*.ts",
+    "lint": "eslint src --ext .ts"
   },
   "repository": "https://github.com/electron/electron-quick-start",
   "keywords": [
@@ -17,8 +18,8 @@
   "devDependencies": {
     "@types/chai": "^4.2.11",
     "@types/mocha": "^7.0.2",
-    "@typescript-eslint/eslint-plugin": "^2.26.0",
-    "@typescript-eslint/parser": "^2.26.0",
+    "@typescript-eslint/eslint-plugin": "^2.30.0",
+    "@typescript-eslint/parser": "^2.30.0",
     "chai": "^4.2.0",
     "electron": "^8.2.0",
     "eslint": "^6.8.0",
