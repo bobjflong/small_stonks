@@ -1,4 +1,4 @@
-type Price = number | null
+type Price = { value: number, up: boolean } | null
 
 type API = { timeSeries: (query: StockQuery) => Promise<StockResult> }
 
@@ -13,12 +13,17 @@ class StockAPIWrapper {
     try {
       const result = await this.stocks.timeSeries({
         symbol: stockName,
-        interval: '1min',
-        amount: 1
+        interval: '5min',
+        amount: 2
       })
-      if (!result[0]) return null
+      if (!result[0] || !result[1]) return null
+      const close = result[0].close
+      const prevClose = result[1].close
 
-      return result[0].close
+      return {
+        value: close,
+        up: close > prevClose,
+      }
     } catch (error) {
       console.error(stockName, error)
       return Promise.reject()

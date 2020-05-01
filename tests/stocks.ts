@@ -6,7 +6,8 @@ const withTimeseries = {
   timeSeries: (params: any) => {
     if (params.symbol === "MSFT") {
       return Promise.resolve([
-        { close: 1234 }
+        { close: 1234 },
+        { close: 1233 }
       ])
     } else {
       return Promise.resolve([])
@@ -20,7 +21,8 @@ describe("price", () => {
 
     const price = await api.price("MSFT")
 
-    expect(price).to.equal(1234)
+    expect(price.value).to.equal(1234)
+    expect(price.up).to.equal(true)
   })
 
   it("returns null if no data is found", async () => {
