@@ -4,7 +4,7 @@ A menu-bar application for macOS, which ticks through a list of stock symbols, g
 
 # Gif
 
-<img src="example.gif">
+<img src="usage.gif">
 
 # Usage
 
