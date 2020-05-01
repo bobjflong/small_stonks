@@ -19,7 +19,7 @@ describe("parse", () => {
   })
   it("adds a default duration", () => {
     expect(parse(["foo", "bar", "--stocks=MSFT,TWLO"])).to.deep.include({
-      duration: 5000,
+      duration: 10000,
     })
   })
   it("parses a duration", () => {
@@ -27,14 +27,19 @@ describe("parse", () => {
       duration: 1234,
     })
   })
+  it("parses an api key", () => {
+    expect(parse(["foo", "bar", "--apiKey=abcdef"])).to.deep.include({
+      apiKey: "abcdef",
+    })
+  })
   it("handles an invalid duration", () => {
     expect(parse(["foo", "bar", "--duration=foo"])).to.deep.include({
-      duration: 5000,
+      duration: 10000,
     })
   })
   it("handles a zero duration", () => {
     expect(parse(["foo", "bar", "--duration=0"])).to.deep.include({
-      duration: 5000,
+      duration: 10000,
     })
   })
 })

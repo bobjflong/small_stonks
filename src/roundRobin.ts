@@ -1,16 +1,29 @@
+import { Price, StockAPI } from "./stocks"
+type Fetched = {item: string, result: Price }
+
 class RoundRobin {
   items: string[]
   pointer: number
+  stockAPI: StockAPI
 
-  constructor(items: string[]) {
+  constructor(items: string[], stockAPI: StockAPI) {
     this.items = items
     this.pointer = 0
+    this.stockAPI = stockAPI
   }
 
-  next() {
+  async next(): Promise<Fetched> {
     const item = this.items[this.pointer]
-    this.increment()
-    return item || null
+    if (!item) return Promise.reject()
+
+    return this.stockAPI.price(item).then(result => {
+      this.increment()
+      return { item, result }
+    })
+  }
+
+  current() {
+    return this.items[this.pointer]
   }
 
   increment() {

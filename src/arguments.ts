@@ -1,13 +1,14 @@
 const parseTokens = {
   stocks: "--stocks=",
   duration: "--duration=",
+  apiKey: "--apiKey=",
 }
 const delimeter = ","
-const defaultDuration = 5000
+const defaultDuration = 10000
 
-type Args = { stocks: string[], duration: number }
+type Args = { stocks: string[], duration: number, apiKey: string }
 
-const find = (args: string[], identifier: "stocks" | "duration"): string | undefined => {
+const find = (args: string[], identifier: "stocks" | "duration" | "apiKey"): string | undefined => {
   const found = args.find(arg => arg.startsWith(parseTokens[identifier]))
   return found?.split(parseTokens[identifier])[1]
 }
@@ -22,9 +23,12 @@ const parseStocks = (value: string | undefined) => value?.split(delimeter) || []
 const parse = (args: string[]): Args => {
   const stocks = parseStocks(find(args, "stocks"))
   const duration = parseDuration(find(args, "duration"))
+  const apiKey = find(args, "apiKey") || ""
+
   return {
     stocks,
     duration,
+    apiKey
   }
 }
 
