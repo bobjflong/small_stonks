@@ -1,6 +1,6 @@
 # small_stonks
 
-A menu-bar application for macOS, which ticks through a list of stock symbols, giving their current price. This app is implemented with Typescript and Electron.
+A menu-bar application for macOS, which ticks through a list of stock symbols. This app is implemented with Typescript and Electron.
 
 # Gif
 
