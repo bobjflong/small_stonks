@@ -1,7 +1,7 @@
 {
-  "name": "electron-quick-start",
+  "name": "small_stonks",
   "version": "1.0.0",
-  "description": "A minimal Electron application",
+  "description": "A very small stocks application for the macOS menu bar",
   "main": "main.js",
   "scripts": {
     "start": "yarn run tsc && electron dist/main.js",
@@ -12,8 +12,8 @@
     "Electron",
     "stocks"
   ],
-  "author": "GitHub",
-  "license": "CC0-1.0",
+  "author": "Bob Long",
+  "license": "MIT",
   "devDependencies": {
     "@types/chai": "^4.2.11",
     "@types/mocha": "^7.0.2",
