@@ -3,7 +3,7 @@ import { expect } from "chai"
 import { StockAPI } from "../src/stocks"
 
 const api: StockAPI = {
-  price: () => Promise.resolve(1),
+  price: () => Promise.resolve({ value: 1, up: true }),
   stocks: null
 }
 
@@ -15,7 +15,7 @@ describe("RoundRobin", () => {
   })
   it("returns nothing if the queue is empty", done => {
     const rr = new RoundRobin([], api)
-    rr.next().catch(rPrice => {
+    rr.next().catch(() => {
       done()
     })
   })

@@ -1,4 +1,5 @@
 import { Price, StockAPI } from "./stocks"
+
 type Fetched = {
   item: string;
   result: Price;
