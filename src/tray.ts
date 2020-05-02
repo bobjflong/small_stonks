@@ -11,17 +11,8 @@ let stockToVisit = ""
 const stocks: { [key: string]: Price } = {}
 
 const formatPriceDisplay = (stock: string, price: Price): string => {
-  let priceDisplay
-  switch(price) {
-    case null: {
-      priceDisplay = "no data"
-      break
-    }
-    case price: {
-      priceDisplay = `$${price?.value}`
-    }
-  }
-  return stock ? `${stock.padEnd(5, '  ')} ${priceDisplay}` : ""
+  const priceDisplay = price ? `$${price.value}` : "no data"
+  return `${stock.padEnd(5, '  ')} ${priceDisplay}`
 }
 
 const leadingInterval = (fn: Function, timeout: number): number => {
