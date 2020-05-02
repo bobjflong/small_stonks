@@ -25,10 +25,6 @@ class RoundRobin {
     })
   }
 
-  current(): string {
-    return this.items[this.pointer]
-  }
-
   increment(): void {
     const incremented = this.pointer + 1
     this.pointer = incremented >= this.items.length ? 0 : incremented
