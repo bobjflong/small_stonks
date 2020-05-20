@@ -11,7 +11,9 @@ A menu-bar application for macOS, which ticks through a list of stock symbols. T
 Requires a free API key from [Alpha Vantage](https://www.alphavantage.co/support/#api-key).
 
 ```
-yarn start --stocks=MSFT,TWLO,SPY,AAPL --apiKey=<api key>
+> yarn install
+
+> yarn start --stocks=MSFT,TWLO,SPY,AAPL --apiKey=<api key>
 ```
 
 The `--duration` parameter is also supported, to change how long each price is displayed for. However free Alpha Vantage accounts have low rate limits, so YMMV in terms of accuracy. The app will try to fall back to a previous price if none is returned by the API.
